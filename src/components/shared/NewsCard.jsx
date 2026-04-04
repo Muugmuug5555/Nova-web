@@ -26,7 +26,7 @@ export default function NewsCard({ article, variant = 'default', onClick }) {
 
   if (variant === 'hero') {
     return (
-      <div className={styles.hero} onClick={() => onClick?.(article)}>
+      <div className={styles.hero}>
         <div className={styles.heroBg}>
           {article.image_url
             ? <img src={article.image_url} alt={article.title} className={styles.heroImg} />
@@ -35,7 +35,12 @@ export default function NewsCard({ article, variant = 'default', onClick }) {
           <div className={styles.heroGrad} />
           <div className={styles.heroBody}>
             <span className={styles.catBadge}>{catName.toUpperCase()}</span>
-            <h2 className={styles.heroTitle}>{article.title}</h2>
+            <h2
+  className={styles.heroTitle}
+  onClick={(e) => { e.stopPropagation(); onClick?.(article); }}
+>
+  {article.title}
+</h2>
             <div className={styles.heroMeta}>
               <span>{article.author}</span>
               <span>·</span>
