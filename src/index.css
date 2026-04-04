@@ -44,3 +44,6 @@ a { text-decoration: none; color: inherit; }
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--b); border-radius: 2px; }
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
