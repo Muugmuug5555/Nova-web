@@ -264,3 +264,4 @@
   .layout { grid-template-columns: 1fr; }
   .sidebar { display: none; }
   .relGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+}
