@@ -263,4 +263,4 @@
 @media (max-width: 768px) {
   .layout { grid-template-columns: 1fr; }
   .sidebar { display: none; }
-  .re
+  .relGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
