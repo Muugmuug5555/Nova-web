@@ -147,6 +147,7 @@
   color: var(--txt2);
   margin-bottom: 18px;
   text-align: justify;
+  text-align-last: left;
   transition: color 0.3s;
 }
 .body p:first-child::first-letter {
@@ -214,7 +215,7 @@
   border-radius: 7px;
   overflow: hidden;
   position: sticky;
-  top: 70px;
+  top: 120px;
   transition: background 0.3s, border-color 0.3s;
 }
 .sbHead {
