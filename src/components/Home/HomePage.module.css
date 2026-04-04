@@ -57,7 +57,14 @@
   transition: color 0.3s;
 }
 .sbCat { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--r); }
-.sbTitle { font-size: 11.5px; line-height: 1.34; color: var(--txt); margin-top: 2px; transition: color 0.3s; }
+.sbTitle {
+  font-size: 12px;
+  line-height: 1.36;
+  color: var(--txt);
+  font-weight: 600;
+  margin-top: 2px;
+  letter-spacing: -0.01em;
+}
 .sbTime { font-size: 10px; color: var(--txt3); margin-top: 2px; }
 
 /* Category sections */
