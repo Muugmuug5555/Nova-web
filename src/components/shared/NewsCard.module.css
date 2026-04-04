@@ -74,10 +74,10 @@
 .listBody { flex: 1; }
 .listCat { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--r); }
 .listTitle {
-  font-size: 12.5px;
+  font-size: 14px;
   line-height: 1.38;
   color: var(--txt);
-  font-weight: 600;
+  font-weight: 700;
   margin-top: 3px;
 }
 .listTime { font-size: 10px; color: var(--txt3); margin-top: 3px; }
