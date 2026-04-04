@@ -1,7 +1,8 @@
 /* ── HERO ── */
 .hero { cursor: pointer; border-radius: 8px; overflow: hidden; }
 .heroBg {
-  height: 320px;
+  aspect-ratio: 16 / 7;
+  width: 100%;
   position: relative;
   display: flex;
   align-items: flex-end;
@@ -75,7 +76,8 @@
 }
 .card:hover { box-shadow: 0 3px 16px rgba(200,32,42,0.1); }
 .cardImg {
-  height: 160px; /* 100px байсныг 160px болгох */
+  aspect-ratio: 1 / 1; /* квадрат */
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
