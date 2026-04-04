@@ -93,7 +93,7 @@
   object-fit: cover;
   position: absolute;
   inset: 0;
-  object-position: center bottom;
+  object-position: center top; /* top болгох */
 }
 .cardBody { padding: 10px 12px; }
 .cardCat { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; color: var(--r); margin-bottom: 4px; }
