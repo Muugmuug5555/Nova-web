@@ -82,24 +82,22 @@ export default function ArticlePage({ articleId, onBack, onArticleClick }) {
           )}
 
           {/* Meta */}
-          <div className={styles.meta}>
-            <div className={styles.avatar}>
-              {article.author?.slice(0, 2).toUpperCase()}
-            </div>
-            <div>
-              <div className={styles.authorName}>{article.author}</div>
-              <div className={styles.date}>
-                {new Date(article.published_at).toLocaleDateString('mn-MN')} ·{' '}
-                {new Date(article.published_at).toLocaleTimeString('mn-MN', {
-                  hour: '2-digit', minute: '2-digit'
-                })}
-              </div>
-            </div>
-            <div className={styles.stats}>
-              <span className={styles.stat}>👁 {article.views?.toLocaleString()}</span>
-              <span className={styles.stat}>⏱ {article.read_minutes} мин</span>
-            </div>
-          </div>
+         {/* Meta */}
+<div className={styles.meta}>
+  <div className={styles.avatar}>
+    {article.author?.slice(0, 2).toUpperCase()}
+  </div>
+  <div>
+    <div className={styles.authorName}>{article.author}</div>
+    <div className={styles.date}>
+      {article.created_at
+        ? new Date(article.created_at).toLocaleDateString('mn-MN', {
+            year: 'numeric', month: 'long', day: 'numeric'
+          })
+        : ''}
+    </div>
+  </div>
+</div>
 
           {/* Hero image */}
           <div className={`${styles.heroImg} cat-${catSlug}`}>
