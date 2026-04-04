@@ -62,7 +62,7 @@ function CategorySection({ slug, label, onArticleClick }) {
   )
 }
 
-export default function HomePage({ onArticleClick }) {
+export default function HomePage({ activeCategory, onArticleClick }) {
   const { articles: featured, loading: featLoading } = useArticles({ featured: true, limit: 1 })
   const { articles: recent, loading: recentLoading } = useArticles({ limit: 8 })
   const { articles: subArticles } = useArticles({ limit: 4 })
@@ -91,14 +91,17 @@ export default function HomePage({ onArticleClick }) {
       </div>
 
       {/* Category sections */}
-      {SECTIONS.map(s => (
-        <CategorySection
-          key={s.slug}
-          slug={s.slug}
-          label={s.label}
-          onArticleClick={onArticleClick}
-        />
-      ))}
+      {(activeCategory
+  ? SECTIONS.filter(s => s.slug === activeCategory)
+  : SECTIONS
+).map(s => (
+  <CategorySection
+    key={s.slug}
+    slug={s.slug}
+    label={s.label}
+    onArticleClick={onArticleClick}
+  />
+))}
     </div>
   )
 }
