@@ -3,11 +3,11 @@ import NewsCard from '../shared/NewsCard'
 import styles from './HomePage.module.css'
 
 const SECTIONS = [
-  { label: 'УЛСТӨР', slug: 'politics' },
-  { label: 'ЭДИЙН ЗАСАГ', slug: 'economy' },
-  { label: 'НИЙГЭМ', slug: 'society' },
-  { label: 'СПОРТ', slug: 'sport' },
-  { label: 'ТЕХНОЛОГИ', slug: 'technology' },
+  { label: 'УЛСТӨР', slug: 'Улс төр' },
+  { label: 'ЭДИЙН ЗАСАГ', slug: 'Эдийн засаг' },
+  { label: 'НИЙГЭМ', slug: 'Нийгэм' },
+  { label: 'СПОРТ', slug: 'Спорт' },
+  { label: 'ТЕХНОЛОГИ', slug: 'Технологи' },
 ]
 
 function SidebarList({ articles, onArticleClick }) {
