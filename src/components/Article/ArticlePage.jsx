@@ -4,7 +4,10 @@ import NewsCard from '../shared/NewsCard'
 import styles from './ArticlePage.module.css'
 
 function timeAgo(dateStr) {
-  const diff = Date.now() - new Date(dateStr)
+  if (!dateStr) return ''
+  const date = new Date(dateStr)
+  if (isNaN(date.getTime())) return ''
+  const diff = Date.now() - date.getTime()
   const min = Math.floor(diff / 60000)
   if (min < 60) return `${min} мин өмнө`
   const hr = Math.floor(min / 60)
