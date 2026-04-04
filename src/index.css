@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@400;500;600&display=swap');
+
+/* ── LIGHT MODE ── */
+:root, [data-theme="light"] {
+  --r: #C8202A;
+  --r2: #A01820;
+  --bg: #FAFAF8;
+  --w: #ffffff;
+  --txt: #111111;
+  --txt2: #333333;
+  --txt3: #888888;
+  --b: #E4E4E4;
+  --sb: #F4F4F2;
+  --card: #ffffff;
+  --hdr: #ffffff;
+  --lead-bg: #FEF7F7;
+  --meta-bg: #F8F8F6;
+}
+
+/* ── DARK MODE ── */
+[data-theme="dark"] {
+  --bg: #0E0E0E;
+  --w: #161616;
+  --txt: #F0EDE6;
+  --txt2: #C8C4BC;
+  --txt3: #666666;
+  --b: #2A2A2A;
+  --sb: #1A1A1A;
+  --card: #1A1A1A;
+  --hdr: #111111;
+  --lead-bg: #1E1010;
+  --meta-bg: #111111;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--txt);
+  font-family: 'DM Sans', sans-serif;
+  transition: background 0.3s, color 0.3s;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* Category color helpers */
+.cat-politics  { background: #FEF0F0; color: #C0212A; }
+.cat-economy   { background: #FFFAEE; color: #A07820; }
+.cat-society   { background: #F5EEF8; color: #6B2A8A; }
+.cat-sport     { background: #F0FAF0; color: #1A7A1A; }
+.cat-technology{ background: #EEF3FD; color: #1845A0; }
+
+[data-theme="dark"] .cat-politics   { background: #2A1010; color: #E88; }
+[data-theme="dark"] .cat-economy    { background: #2A2010; color: #D4A84B; }
+[data-theme="dark"] .cat-society    { background: #1E102A; color: #C47BC4; }
+[data-theme="dark"] .cat-sport      { background: #102A10; color: #6DB86D; }
+[data-theme="dark"] .cat-technology { background: #101828; color: #7B9CDB; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--b); border-radius: 2px; }

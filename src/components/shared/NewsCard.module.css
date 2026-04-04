@@ -1,0 +1,80 @@
+/* ── HERO ── */
+.hero { cursor: pointer; border-radius: 8px; overflow: hidden; }
+.heroBg {
+  height: 320px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  background: #1a1a2e;
+}
+.heroImg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.heroPlaceholder {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+}
+.heroGrad {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
+}
+.heroBody { position: relative; z-index: 2; padding: 20px; }
+.catBadge {
+  display: inline-block;
+  background: var(--r); color: #fff;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.14em;
+  padding: 2px 9px; border-radius: 2px; margin-bottom: 8px;
+}
+.heroTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; line-height: 1.3; font-weight: 700; color: #fff;
+}
+.heroMeta {
+  display: flex; gap: 8px;
+  font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 8px;
+}
+
+/* ── LIST ITEM ── */
+.listItem {
+  display: flex; gap: 10px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--b);
+  cursor: pointer;
+  transition: background 0.15s;
+  align-items: flex-start;
+}
+.listItem:last-child { border-bottom: none; }
+.listItem:hover { background: var(--sb); }
+.listThumb {
+  width: 68px; height: 54px;
+  border-radius: 5px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8.5px; font-weight: 700; letter-spacing: 0.07em;
+  overflow: hidden;
+}
+.listImg { width: 100%; height: 100%; object-fit: cover; }
+.listBody { flex: 1; }
+.listCat { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--r); }
+.listTitle { font-size: 12px; line-height: 1.36; color: var(--txt); margin-top: 3px; transition: color 0.3s; }
+.listTime { font-size: 10px; color: var(--txt3); margin-top: 3px; }
+
+/* ── DEFAULT CARD ── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--b);
+  border-radius: 7px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.2s, background 0.3s, border-color 0.3s;
+}
+.card:hover { box-shadow: 0 3px 16px rgba(200,32,42,0.1); }
+.cardImg {
+  height: 100px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+  overflow: hidden; position: relative;
+}
+.cardImgEl { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.cardBody { padding: 10px 12px; }
+.cardCat { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; color: var(--r); margin-bottom: 4px; }
+.cardTitle { font-size: 12.5px; line-height: 1.38; color: var(--txt); transition: color 0.3s; }
+.cardMeta { display: flex; gap: 6px; font-size: 10px; color: var(--txt3); margin-top: 6px; }

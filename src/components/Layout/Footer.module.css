@@ -1,0 +1,35 @@
+.footer {
+  background: #0A0A0A;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--r);
+}
+
+.copy {
+  font-size: 10px;
+  color: #555;
+  margin-top: 3px;
+}
+
+.links {
+  display: flex;
+  gap: 16px;
+}
+
+.links a {
+  font-size: 11px;
+  color: #666;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.links a:hover { color: #ccc; }
