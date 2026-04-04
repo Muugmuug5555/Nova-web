@@ -4,11 +4,11 @@ import styles from './Header.module.css'
 
 const CATEGORIES = [
   { label: 'Нүүр', slug: '' },
-  { label: 'Улс төр', slug: 'politics' },
-  { label: 'Эдийн засаг', slug: 'economy' },
-  { label: 'Нийгэм', slug: 'society' },
-  { label: 'Спорт', slug: 'sport' },
-  { label: 'Технологи', slug: 'technology' },
+  { label: 'Улс төр', slug: 'Улс төр' },
+  { label: 'Эдийн засаг', slug: 'Эдийн засаг' },
+  { label: 'Нийгэм', slug: 'Нийгэм' },
+  { label: 'Спорт', slug: 'Спорт' },
+  { label: 'Технологи', slug: 'Технологи' },
 ]
 
 export default function Header({ activeCategory, onCategoryChange, onSearch }) {
