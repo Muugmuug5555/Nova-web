@@ -116,10 +116,10 @@
 }
 
 .navItem {
-  padding: 9px 14px;
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.5);
+  padding: 11px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.6);
   background: none;
   border: none;
   border-bottom: 2px solid transparent;
@@ -127,6 +127,7 @@
   cursor: pointer;
   font-family: 'Plus Jakarta Sans', sans-serif;
   transition: color 0.2s, border-color 0.2s;
+  letter-spacing: 0.02em;
 }
 .navItem:hover { color: rgba(255,255,255,0.9); }
 .navActive { color: #fff !important; border-bottom-color: var(--r) !important; }
