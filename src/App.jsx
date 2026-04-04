@@ -32,10 +32,10 @@ export default function App() {
 
   return (
     <ThemeProvider>
-      <Header
-        activeCategory={activeCategory}
-        onCategoryChange={handleCategoryChange}
-      />
+     <Header
+  activeCategory={activeCategory}
+  onCategoryChange={handleCategoryChange}
+/>
 
       {page === 'home' && <Ticker />}
 
