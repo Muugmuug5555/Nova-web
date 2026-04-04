@@ -75,18 +75,18 @@
   transition: box-shadow 0.2s, background 0.3s, border-color 0.3s;
 }
 .cardImg {
-  aspect-ratio: 1 / 1;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  overflow: hidden;
+  height: 0;
+  padding-bottom: 70%; /* зургийн 70% харуулна — доод 30% тасарна */
   position: relative;
-  transition: all 0.4s ease;
+  overflow: hidden;
+  transition: padding-bottom 0.4s ease;
 }
+
+.card:hover .cardImg {
+  padding-bottom: 100%; /* hover хийхэд 100% бүтэн харагдана */
+}
+
 .cardImgEl {
   width: 100%;
   height: 100%;
@@ -94,11 +94,6 @@
   position: absolute;
   inset: 0;
   object-position: center bottom;
-  transition: transform 0.4s ease;
-}
-
-.card:hover .cardImgEl {
-  transform: scale(1.05);
 }
 .cardBody { padding: 10px 12px; }
 .cardCat { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; color: var(--r); margin-bottom: 4px; }
