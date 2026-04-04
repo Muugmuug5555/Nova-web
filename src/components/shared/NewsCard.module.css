@@ -93,7 +93,12 @@
   object-fit: cover;
   position: absolute;
   inset: 0;
-  object-position: center bottom; /* доороос тасална — гарчиг харагдана */
+  object-position: center bottom;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .cardImgEl {
+  transform: scale(1.05);
 }
 .cardBody { padding: 10px 12px; }
 .cardCat { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; color: var(--r); margin-bottom: 4px; }
