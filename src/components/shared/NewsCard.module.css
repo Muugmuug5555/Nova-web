@@ -74,9 +74,6 @@
   cursor: pointer;
   transition: box-shadow 0.2s, background 0.3s, border-color 0.3s;
 }
-.card:hover .cardImg {
-  aspect-ratio: 4 / 3;
-}
 .cardImg {
   aspect-ratio: 1 / 1;
   width: 100%;
