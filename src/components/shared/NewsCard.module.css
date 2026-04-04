@@ -14,7 +14,7 @@
   width: 100%; 
   height: 100%; 
   object-fit: cover;
-  object-position: center top; /* ← энэ мөрийг нэмэх */
+  object-position: center center; /* ← энэ мөрийг нэмэх */
 }
 .heroGrad {
   position: absolute; inset: 0;
@@ -74,9 +74,11 @@
   cursor: pointer;
   transition: box-shadow 0.2s, background 0.3s, border-color 0.3s;
 }
-.card:hover { box-shadow: 0 3px 16px rgba(200,32,42,0.1); }
+.card:hover .cardImg {
+  aspect-ratio: 4 / 3;
+}
 .cardImg {
-  aspect-ratio: 1 / 1; /* квадрат */
+  aspect-ratio: 1 / 1;
   width: 100%;
   display: flex;
   align-items: center;
@@ -86,6 +88,7 @@
   letter-spacing: 0.1em;
   overflow: hidden;
   position: relative;
+  transition: all 0.4s ease;
 }
 .cardImgEl {
   width: 100%;
@@ -93,7 +96,8 @@
   object-fit: cover;
   position: absolute;
   inset: 0;
-  object-position: center center; /* top-оос center болгох */
+  object-position: center bottom;
+  transition: object-position 0.4s ease;
 }
 .cardBody { padding: 10px 12px; }
 .cardCat { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; color: var(--r); margin-bottom: 4px; }
