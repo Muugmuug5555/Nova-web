@@ -1,44 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap');
 
-*{margin:0;padding:0;box-sizing:border-box;}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root, [data-theme="light"] {
   --r: #C8202A;
-  --bg: #F5F5F5;
+  --bg: #F7F7F7;
   --w: #ffffff;
-  --txt: #0A0A0A;
-  --txt2: #222222;
-  --txt3: #888888;
-  --b: #D8D8D8;
-  --sb: #EFEFEF;
+  --txt: #111111;
+  --txt2: #444444;
+  --txt3: #999999;
+  --b: #E8E8E8;
+  --sb: #F2F2F2;
   --card: #ffffff;
-  --hdr: #0A0A0A;
-  --lead-bg: #F8F0F0;
-  --meta-bg: #F2F2F2;
+  --hdr: #111111;
+  --lead-bg: #FEF5F5;
+  --meta-bg: #F5F5F5;
 }
 
 [data-theme="dark"] {
-  --bg: #0A0A0A;
-  --w: #111111;
-  --txt: #F5F5F5;
-  --txt2: #CCCCCC;
+  --bg: #111111;
+  --w: #1A1A1A;
+  --txt: #F0F0F0;
+  --txt2: #BBBBBB;
   --txt3: #666666;
-  --b: #222222;
+  --b: #2A2A2A;
   --sb: #161616;
-  --card: #111111;
-  --hdr: #000000;
-  --lead-bg: #1A0A0A;
-  --meta-bg: #111111;
+  --card: #1A1A1A;
+  --hdr: #0A0A0A;
+  --lead-bg: #1E1010;
+  --meta-bg: #161616;
 }
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   background: var(--bg);
   color: var(--txt);
-  font-family: 'DM Sans', sans-serif;
-  transition: background 0.3s, color 0.3s;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
+  transition: background 0.3s, color 0.3s;
 }
 
 a { text-decoration: none; color: inherit; }
