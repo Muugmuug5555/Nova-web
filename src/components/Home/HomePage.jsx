@@ -73,7 +73,7 @@ export default function HomePage({ activeCategory, onArticleClick, onCategoryCha
 
   const hero = featured[0] || recent[0]
   const sidebarArticles = recent.slice(0, 20)
-  const subCards = subArticles.slice(0, 20)
+  const subCards = subArticles.slice(0, 2)
 
   return (
     <div className={styles.page}>
