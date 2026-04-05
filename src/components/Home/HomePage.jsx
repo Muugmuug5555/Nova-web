@@ -68,7 +68,7 @@ function CategorySection({ slug, label, onArticleClick, onCategoryClick }) {
   )
 }
 
-export default function HomePage({ activeCategory, onArticleClick }) {
+export default function HomePage({ activeCategory, onArticleClick, onCategoryChange }) {
   const { articles: featured, loading: featLoading } = useArticles({ featured: true, limit: 1 })
   const { articles: recent, loading: recentLoading } = useArticles({ limit: 8 })
   const { articles: subArticles } = useArticles({ limit: 4 })
