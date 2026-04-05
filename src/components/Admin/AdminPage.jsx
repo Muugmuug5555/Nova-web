@@ -37,7 +37,23 @@ export default function AdminPage({ onLogout }) {
     setForm({ title: '', summary: '', body: '', category: 'Улс төр', image_url: '', status: 'published', pinned: false })
     fetchPosts()
   }
-
+async function handleImageUpload(e) {
+    const file = e.target.files[0]
+    if (!file) return
+    const ext = file.name.split('.').pop()
+    const fileName = `${Date.now()}.${ext}`
+    const { error } = await supabase.storage
+      .from('nova logo')
+      .upload(fileName, file, { upsert: true })
+    if (error) {
+      alert('Зураг upload хийхэд алдаа гарлаа')
+      return
+    }
+    const { data: urlData } = supabase.storage
+      .from('nova logo')
+      .getPublicUrl(fileName)
+    setForm(prev => ({ ...prev, image_url: urlData.publicUrl }))
+  }
   async function handleDelete(id) {
     if (!window.confirm('Устгах уу?')) return
     await supabase.from('posts').delete().eq('id', id)
