@@ -15,7 +15,10 @@ function SidebarList({ articles, onArticleClick }) {
     <div className={styles.sidebarBlock}>
       <div className={styles.sbHead}>
         <span className={styles.sbLabel}>СҮҮЛИЙН МЭДЭЭ</span>
-        <span className={styles.sbMore}>Бүгд →</span>
+        <span 
+  className={styles.sbMore}
+  onClick={() => onArticleClick && window.scrollTo(0,0)}
+>Бүгд →</span>
       </div>
       {articles.map((a, i) => (
         <div key={a.id} className={styles.sbItem} onClick={() => onArticleClick(a)}>
@@ -43,7 +46,7 @@ function timeAgo(dateStr) {
   return `${Math.floor(hr / 24)} өдрийн өмнө`
 }
 
-function CategorySection({ slug, label, onArticleClick }) {
+function CategorySection({ slug, label, onArticleClick, onCategoryClick }) {
   const { articles, loading } = useArticles({ category: slug, limit: 3 })
   if (loading || !articles.length) return null
 
@@ -51,7 +54,10 @@ function CategorySection({ slug, label, onArticleClick }) {
     <section className={styles.catSection}>
       <div className={styles.catHeader}>
         <span className={styles.catLabel}>{label}</span>
-        <span className={styles.catMore}>Бүгдийг үзэх →</span>
+        <span 
+          className={styles.catMore}
+          onClick={() => onCategoryClick?.(slug)}
+        >Бүгдийг үзэх →</span>
       </div>
       <div className={styles.catGrid}>
         {articles.map(a => (
@@ -96,11 +102,12 @@ export default function HomePage({ activeCategory, onArticleClick }) {
   : SECTIONS
 ).map(s => (
   <CategorySection
-    key={s.slug}
-    slug={s.slug}
-    label={s.label}
-    onArticleClick={onArticleClick}
-  />
+  key={s.slug}
+  slug={s.slug}
+  label={s.label}
+  onArticleClick={onArticleClick}
+  onCategoryClick={handleCategoryChange}
+/>
 ))}
     </div>
   )
