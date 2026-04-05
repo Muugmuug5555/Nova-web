@@ -14,7 +14,7 @@
   width: 100%; 
   height: 100%; 
   object-fit: cover;
-  object-position: center center; /* ← энэ мөрийг нэмэх */
+  object-position: center center;
 }
 .heroGrad {
   position: absolute; inset: 0;
@@ -36,7 +36,6 @@
   letter-spacing: -0.01em;
   transition: color 0.2s;
 }
-
 .heroTitle:hover {
   color: rgba(255,255,255,0.75);
   cursor: pointer;
@@ -53,22 +52,27 @@
   border-bottom: 1px solid var(--b);
   cursor: pointer;
   transition: background 0.15s;
-  align-items: flex-start;
+  align-items: center;
 }
-.listItem:last-child { border-bottom: none; }
 .listItem:hover { background: var(--sb); }
 .listThumb {
-  width: 68px; height: 54px;
-  border-radius: 5px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 8.5px; font-weight: 700; letter-spacing: 0.07em;
+  width: 90px;
+  height: 90px;
+  border-radius: 5px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
   overflow: hidden;
 }
 .listImg { 
   width: 100%; 
   height: 100%; 
   object-fit: cover;
-  object-position: center top; /* ← энэ мөрийг нэмэх */
+  object-position: center top;
 }
 .listBody { flex: 1; }
 .listCat { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--r); }
@@ -93,23 +97,25 @@
 .cardImg {
   width: 100%;
   height: 0;
-  padding-bottom: 70%; /* зургийн 70% харуулна — доод 30% тасарна */
+  padding-bottom: 70%;
   position: relative;
   overflow: hidden;
   transition: padding-bottom 0.4s ease;
 }
-
 .card:hover .cardImg {
-  padding-bottom: 100%; /* hover хийхэд 100% бүтэн харагдана */
+  padding-bottom: 100%;
 }
-
 .cardImgEl {
   width: 100%;
   height: 100%;
   object-fit: cover;
   position: absolute;
   inset: 0;
-  object-position: center top; /* top болгох */
+  object-position: center top;
+  transition: transform 0.4s ease;
+}
+.card:hover .cardImgEl {
+  transform: scale(1.05);
 }
 .cardBody { padding: 10px 12px; }
 .cardCat { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; color: var(--r); margin-bottom: 4px; }
@@ -121,8 +127,5 @@
   transition: color 0.2s;
   display: inline;
 }
-
-.card:hover .cardTitle {
-  color: var(--r);
-}
+.card:hover .cardTitle { color: var(--r); }
 .cardMeta { display: flex; gap: 6px; font-size: 10px; color: var(--txt3); margin-top: 6px; }
