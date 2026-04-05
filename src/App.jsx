@@ -40,7 +40,7 @@ export default function App() {
       {page === 'home' && <Ticker />}
 
       {page === 'home' && (
-        <HomePage
+      <HomePage
   activeCategory={activeCategory}
   onArticleClick={openArticle}
   onCategoryChange={handleCategoryChange}
