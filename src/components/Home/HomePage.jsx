@@ -1,8 +1,7 @@
 import { useArticles } from '../../hooks/useArticles'
 import NewsCard from '../shared/NewsCard'
 import styles from './HomePage.module.css'
-const { articles: subArticles } = useArticles({ limit: 4 })
-const subCards = subArticles.slice(1, 3)
+
 const SECTIONS = [
   { label: 'УЛСТӨР', slug: 'Улс төр' },
   { label: 'ЭДИЙН ЗАСАГ', slug: 'Эдийн засаг' },
@@ -23,12 +22,12 @@ function timeAgo(dateStr) {
   return `${Math.floor(hr / 24)} өдрийн өмнө`
 }
 
-function SidebarList({ articles, onArticleClick }) {
+function SidebarList({ articles, onArticleClick, onAllClick }) {
   return (
     <div className={styles.sidebarBlock}>
       <div className={styles.sbHead}>
         <span className={styles.sbLabel}>СҮҮЛД НЭМЭГДСЭН</span>
-        <span className={styles.sbMore}>Бүгд →</span>
+        <span className={styles.sbMore} onClick={onAllClick}>Бүгд →</span>
       </div>
       <div className={styles.sbScroll}>
         {articles.map((a, i) => (
@@ -54,10 +53,9 @@ function CategorySection({ slug, label, onArticleClick, onCategoryClick }) {
     <section className={styles.catSection}>
       <div className={styles.catHeader}>
         <span className={styles.catLabel}>{label}</span>
-        <span
-          className={styles.catMore}
-          onClick={() => onCategoryClick?.(slug)}
-        >Бүгдийг үзэх →</span>
+        <span className={styles.catMore} onClick={() => onCategoryClick?.(slug)}>
+          Бүгдийг үзэх →
+        </span>
       </div>
       <div className={styles.catGrid}>
         {articles.map(a => (
@@ -71,28 +69,33 @@ function CategorySection({ slug, label, onArticleClick, onCategoryClick }) {
 export default function HomePage({ activeCategory, onArticleClick, onCategoryChange }) {
   const { articles: featured } = useArticles({ featured: true, limit: 1 })
   const { articles: recent } = useArticles({ limit: 8 })
+  const { articles: subArticles } = useArticles({ limit: 4 })
 
   const hero = featured[0] || recent[0]
   const sidebarArticles = recent.slice(0, 6)
+  const subCards = subArticles.slice(1, 3)
 
   return (
     <div className={styles.page}>
       {!activeCategory && (
         <div className={styles.heroWrap}>
           <div className={styles.heroMain}>
-  {hero && (
-    <NewsCard article={hero} variant="hero" onClick={onArticleClick} />
-  )}
-  <div className={styles.subGrid}>
-    {subCards.map(a => (
-      <NewsCard key={a.id} article={a} variant="list" onClick={onArticleClick} />
-    ))}
-  </div>
-</div>
+            {hero && (
+              <NewsCard article={hero} variant="hero" onClick={onArticleClick} />
+            )}
+            <div className={styles.subGrid}>
+              {subCards.map(a => (
+                <NewsCard key={a.id} article={a} variant="list" onClick={onArticleClick} />
+              ))}
+            </div>
           </div>
-          <aside className={styles.sidebar}>
-            <SidebarList articles={sidebarArticles} onArticleClick={onArticleClick} />
-          </aside>
+          <div className={styles.sidebar}>
+            <SidebarList
+              articles={sidebarArticles}
+              onArticleClick={onArticleClick}
+              onAllClick={() => onCategoryChange?.('')}
+            />
+          </div>
         </div>
       )}
 
