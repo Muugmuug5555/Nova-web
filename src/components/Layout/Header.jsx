@@ -11,21 +11,19 @@ const CATEGORIES = [
   { label: 'Технологи', slug: 'Технологи' },
 ]
 
-export default function Header({ activeCategory, onCategoryChange, onSearch }) {
+export default function Header({ activeCategory, onCategoryChange }) {
   const { dark, setDark } = useTheme()
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchVal, setSearchVal] = useState('')
 
   function handleSearch(e) {
     e.preventDefault()
-    onSearch?.(searchVal)
     setSearchOpen(false)
     setSearchVal('')
   }
 
   return (
     <header className={styles.header}>
-      {/* Top bar */}
       <div className={styles.topbar}>
         <span className={styles.date}>
           {new Date().toLocaleDateString('mn-MN', {
@@ -39,17 +37,29 @@ export default function Header({ activeCategory, onCategoryChange, onSearch }) {
         </div>
       </div>
 
-      {/* Logo + actions */}
-      <div className={styles.main}>
+      <div className={styles.hdrInner}>
         <a href="/" className={styles.logoWrap}>
-  <img 
-    src="https://wblhguozbmfnrzoolids.supabase.co/storage/v1/object/public/nova%20logo/Nova%20(20).png" 
-    alt="НОВА.мн" 
-    className={styles.logoImg} 
-  />
-</a>
+          <img
+            src="https://wblhguozbmfnrzoolids.supabase.co/storage/v1/object/public/nova%20logo/Nova%20(20).png"
+            alt="НОВА.мн"
+            className={styles.logoImg}
+          />
+        </a>
+
+        <nav className={styles.nav}>
+          {CATEGORIES.map(cat => (
+            <button
+              key={cat.slug}
+              className={`${styles.navItem} ${activeCategory === cat.slug ? styles.navActive : ''}`}
+              onClick={() => onCategoryChange?.(cat.slug)}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </nav>
+
         <div className={styles.actions}>
-          <a
+          
             href="https://facebook.com"
             target="_blank"
             rel="noreferrer"
@@ -69,15 +79,11 @@ export default function Header({ activeCategory, onCategoryChange, onSearch }) {
               />
             </form>
           ) : (
-            <button
-              className={styles.searchBtn}
-              onClick={() => setSearchOpen(true)}
-            >
+            <button className={styles.searchBtn} onClick={() => setSearchOpen(true)}>
               Хайх
             </button>
           )}
 
-          {/* Dark mode toggle */}
           <div className={styles.toggleWrap} onClick={() => setDark(d => !d)}>
             <span className={styles.toggleIcon}>{dark ? '☾' : '☀'}</span>
             <div className={`${styles.toggle} ${dark ? styles.toggleOn : ''}`}>
@@ -86,19 +92,6 @@ export default function Header({ activeCategory, onCategoryChange, onSearch }) {
           </div>
         </div>
       </div>
-
-      {/* Navigation */}
-      <nav className={styles.nav}>
-        {CATEGORIES.map(cat => (
-          <button
-            key={cat.slug}
-            className={`${styles.navItem} ${activeCategory === cat.slug ? styles.navActive : ''}`}
-            onClick={() => onCategoryChange?.(cat.slug)}
-          >
-            {cat.label}
-          </button>
-        ))}
-      </nav>
     </header>
   )
 }
