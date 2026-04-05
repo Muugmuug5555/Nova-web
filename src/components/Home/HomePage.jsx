@@ -27,17 +27,20 @@ function SidebarList({ articles, onArticleClick }) {
     <div className={styles.sidebarBlock}>
       <div className={styles.sbHead}>
         <span className={styles.sbLabel}>СҮҮЛИЙН МЭДЭЭ</span>
+        <span className={styles.sbMore}>Бүгд →</span>
       </div>
-      {articles.map((a, i) => (
-        <div key={a.id} className={styles.sbItem} onClick={() => onArticleClick(a)}>
-          <span className={styles.sbNum}>0{i + 1}</span>
-          <div>
-            <div className={styles.sbCat}>{a.category}</div>
-            <div className={styles.sbTitle}>{a.title}</div>
-            <div className={styles.sbTime}>{timeAgo(a.created_at)}</div>
+      <div className={styles.sbScroll}>
+        {articles.map((a, i) => (
+          <div key={a.id} className={styles.sbItem} onClick={() => onArticleClick(a)}>
+            <span className={styles.sbNum}>0{i + 1}</span>
+            <div>
+              <div className={styles.sbCat}>{a.category}</div>
+              <div className={styles.sbTitle}>{a.title}</div>
+              <div className={styles.sbTime}>{timeAgo(a.created_at)}</div>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
 }
