@@ -12,11 +12,10 @@ export default function Footer() {
         <div className={styles.copy}>© {new Date().getFullYear()} ХААЛТГҮЙ ҮНЭН · Бүх эрх хуулиар хамгаалагдсан</div>
       </div>
       <div className={styles.links}>
-        <a href="/policy">Нийтлэлийн бодлого</a>
-        <a href="/privacy">Нууцлал</a>
-        <a href="/contact">Холбоо барих</a>
-        <a href="/rss">RSS</a>
-      </div>
+  <a href="https://www.facebook.com/NovaTseg" target="_blank" rel="noreferrer">Холбоо барих</a>
+  <a href="/policy">Нийтлэлийн бодлого</a>
+  <a href="/privacy">Нууцлал</a>
+</div>
     </footer>
   )
 }
