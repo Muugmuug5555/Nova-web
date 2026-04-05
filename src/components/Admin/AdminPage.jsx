@@ -78,7 +78,6 @@ export default function AdminPage({ onLogout }) {
 
   return (
     <div style={{ minHeight: '100vh', background: '#0A0A0A', color: '#F0F0F0', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-      {/* Header */}
       <div style={{ background: '#111', borderBottom: '2px solid #C8202A', padding: '12px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <img src="https://wblhguozbmfnrzoolids.supabase.co/storage/v1/object/public/nova%20logo/Nova%20(20).png" alt="НОВА.мн" style={{ height: '36px' }} />
@@ -102,66 +101,3 @@ export default function AdminPage({ onLogout }) {
           </button>
         </div>
       </div>
-
-      <div style={{ padding: '24px', maxWidth: '1000px', margin: '0 auto' }}>
-        {view === 'list' ? (
-          <div>
-            <div style={{ marginBottom: '16px', fontSize: '13px', color: '#888' }}>
-              Нийт {posts.length} мэдээ
-            </div>
-            {loading ? (
-              <div style={{ color: '#888', textAlign: 'center', padding: '40px' }}>Уншиж байна...</div>
-            ) : (
-              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead>
-                  <tr style={{ borderBottom: '1px solid #2A2A2A' }}>
-                    <th style={{ textAlign: 'left', padding: '10px', fontSize: '11px', color: '#888', letterSpacing: '0.1em' }}>ГАРЧИГ</th>
-                    <th style={{ textAlign: 'left', padding: '10px', fontSize: '11px', color: '#888', letterSpacing: '0.1em' }}>АНГИЛАЛ</th>
-                    <th style={{ textAlign: 'left', padding: '10px', fontSize: '11px', color: '#888', letterSpacing: '0.1em' }}>ТӨЛӨВ</th>
-                    <th style={{ textAlign: 'left', padding: '10px', fontSize: '11px', color: '#888', letterSpacing: '0.1em' }}>ОГНОО</th>
-                    <th style={{ padding: '10px' }}></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {posts.map(post => (
-                    <tr key={post.id} style={{ borderBottom: '1px solid #1A1A1A' }}>
-                      <td style={{ padding: '12px 10px', fontSize: '13px', maxWidth: '300px' }}>
-                        <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{post.title}</div>
-                      </td>
-                      <td style={{ padding: '12px 10px', fontSize: '12px', color: '#888' }}>{post.category}</td>
-                      <td style={{ padding: '12px 10px' }}>
-                        <span style={{ fontSize: '11px', padding: '2px 8px', borderRadius: '10px', background: post.status === 'published' ? '#1A3A1A' : '#2A2A2A', color: post.status === 'published' ? '#6DB86D' : '#888' }}>
-                          {post.status === 'published' ? 'Нийтлэгдсэн' : 'Ноорог'}
-                        </span>
-                      </td>
-                      <td style={{ padding: '12px 10px', fontSize: '12px', color: '#888' }}>
-                        {new Date(post.created_at).toLocaleDateString('mn-MN')}
-                      </td>
-                      <td style={{ padding: '12px 10px' }}>
-                        <div style={{ display: 'flex', gap: '8px' }}>
-                          <button onClick={() => handleEdit(post)}
-                            style={{ background: '#2A2A2A', color: '#fff', border: 'none', borderRadius: '4px', padding: '6px 12px', cursor: 'pointer', fontSize: '12px', fontFamily: 'inherit' }}>
-                            Засах
-                          </button>
-                          <button onClick={() => handleDelete(post.id)}
-                            style={{ background: '#3A1A1A', color: '#C8202A', border: 'none', borderRadius: '4px', padding: '6px 12px', cursor: 'pointer', fontSize: '12px', fontFamily: 'inherit' }}>
-                            Устгах
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            )}
-          </div>
-        ) : (
-          <div style={{ maxWidth: '700px' }}>
-            <h2 style={{ fontSize: '18px', marginBottom: '24px', fontWeight: '700' }}>
-              {editing ? 'Мэдээ засах' : 'Шинэ мэдээ нэмэх'}
-            </h2>
-            <label style={lbl}>ГАРЧИГ</label>
-            <input style={inp} value={form.title} onChange={e => setForm({ ...form, title: e.target.value })} placeholder="Мэдээний гарчиг" />
-
-            <label style={lbl}>ТОВЧ АГУУЛГА</label>
-            <textarea style={{ ...inp, height: '80px', res
