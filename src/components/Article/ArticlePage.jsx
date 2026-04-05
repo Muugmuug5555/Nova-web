@@ -20,12 +20,11 @@ function ReadingProgress() {
 
   useEffect(() => {
     function onScroll() {
-      const el = document.documentElement
-      const scrolled = el.scrollTop
-      const total = el.scrollHeight - el.clientHeight
-      setPct(total > 0 ? Math.round((scrolled / total) * 100) : 0)
+      const scrolled = window.scrollY
+      const total = document.documentElement.scrollHeight - window.innerHeight
+      setPct(total > 0 ? Math.min(Math.round((scrolled / total) * 100), 100) : 0)
     }
-    window.addEventListener('scroll', onScroll)
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
