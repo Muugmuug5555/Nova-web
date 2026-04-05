@@ -50,8 +50,8 @@ export default function Header({ activeCategory, onCategoryChange }) {
           {CATEGORIES.map(cat => (
             <button
               key={cat.slug}
-              className={`${styles.navItem} ${activeCategory === cat.slug ? styles.navActive : ''}`}
-              onClick={() => onCategoryChange?.(cat.slug)}
+              className={styles.navItem + (activeCategory === cat.slug ? ' ' + styles.navActive : '')}
+              onClick={() => onCategoryChange(cat.slug)}
             >
               {cat.label}
             </button>
@@ -79,17 +79,14 @@ export default function Header({ activeCategory, onCategoryChange }) {
               />
             </form>
           ) : (
-            <button
-              className={styles.searchBtn}
-              onClick={() => setSearchOpen(true)}
-            >
+            <button className={styles.searchBtn} onClick={() => setSearchOpen(true)}>
               Хайх
             </button>
           )}
 
           <div className={styles.toggleWrap} onClick={() => setDark(d => !d)}>
             <span className={styles.toggleIcon}>{dark ? '☾' : '☀'}</span>
-            <div className={`${styles.toggle} ${dark ? styles.toggleOn : ''}`}>
+            <div className={styles.toggle + (dark ? ' ' + styles.toggleOn : '')}>
               <div className={styles.toggleKnob} />
             </div>
           </div>
