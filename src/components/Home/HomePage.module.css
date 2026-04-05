@@ -6,8 +6,13 @@
   display: grid;
   grid-template-columns: 1fr 260px;
   gap: 20px;
+  align-items: start;
 }
-.heroMain {}
+heroMain {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 .subGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
