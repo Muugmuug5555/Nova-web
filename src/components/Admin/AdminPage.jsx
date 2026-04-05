@@ -54,7 +54,15 @@ async function handleImageUpload(e) {
     .getPublicUrl(fileName)
   setForm(prev => ({ ...prev, image_url: urlData.publicUrl }))
 }
-
+async function handleDelete(id) {
+  if (!window.confirm('Устгах уу?')) return
+  const { error } = await supabase.from('posts').delete().eq('id', id)
+  if (error) {
+    alert('Алдаа: ' + error.message)
+    return
+  }
+  fetchPosts()
+}
   function handleEdit(post) {
     setEditing(post.id)
     setForm({
