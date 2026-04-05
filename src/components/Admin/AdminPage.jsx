@@ -184,7 +184,22 @@ async function handleImageUpload(e) {
             <textarea style={{ ...inp, height: '200px', resize: 'vertical' }} value={form.body} onChange={e => setForm({ ...form, body: e.target.value })} placeholder="Мэдээний бүтэн агуулга" />
 
             <label style={lbl}>ЗУРГИЙН ХОЛБООС</label>
-            <input style={inp} value={form.image_url} onChange={e => setForm({ ...form, image_url: e.target.value })} placeholder="https://..." />
+<input style={inp} value={form.image_url} onChange={e => setForm({ ...form, image_url: e.target.value })} placeholder="https://..." />
+
+<label style={lbl}>ЗУРАГ UPLOAD ХИЙХ</label>
+<input
+  type="file"
+  accept="image/*"
+  onChange={handleImageUpload}
+  style={{ ...inp, padding: '8px', cursor: 'pointer' }}
+/>
+{form.image_url && (
+  <img
+    src={form.image_url}
+    alt="preview"
+    style={{ width: '100%', borderRadius: '6px', marginBottom: '16px', objectFit: 'cover', maxHeight: '200px' }}
+  />
+)}
 
             <label style={lbl}>АНГИЛАЛ</label>
             <select style={{ ...inp, cursor: 'pointer' }} value={form.category} onChange={e => setForm({ ...form, category: e.target.value })}>
