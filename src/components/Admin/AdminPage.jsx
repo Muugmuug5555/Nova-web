@@ -9,10 +9,10 @@ export default function AdminPage({ onLogout }) {
   const [view, setView] = useState('list')
   const [editing, setEditing] = useState(null)
   const [form, setForm] = useState({
-    title: '', summary: '', body: '',
-    category: 'Улс төр', image_url: '',
-    status: 'published', pinned: false, is_featured: false
-  })
+  title: '', summary: '', body: '',
+  category: 'Улс төр', image_url: '',
+  status: 'published', pinned: false, is_featured: false, is_sub: false
+})
 
   useEffect(() => { fetchPosts() }, [])
 
@@ -34,7 +34,7 @@ export default function AdminPage({ onLogout }) {
     }
     setView('list')
     setEditing(null)
-    setForm({ title: '', summary: '', body: '', category: 'Улс төр', image_url: '', status: 'published', pinned: false, is_featured: false })
+    setForm({ title: '', summary: '', body: '', category: 'Улс төр', image_url: '', status: 'published', pinned: false, is_featured: false, is_sub: false })
     fetchPosts()
   }
 
@@ -77,6 +77,7 @@ export default function AdminPage({ onLogout }) {
       status: post.status || 'published',
       pinned: post.pinned || false,
       is_featured: post.is_featured || false
+      is_sub: post.is_sub || false
     })
     setView('form')
   }
@@ -219,10 +220,10 @@ export default function AdminPage({ onLogout }) {
               <label htmlFor="pinned" style={{ fontSize: '13px', color: '#ccc', cursor: 'pointer' }}>Яаралтай мэдээ (ticker-т харагдана)</label>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '24px' }}>
-              <input type="checkbox" id="is_featured" checked={form.is_featured} onChange={e => setForm({ ...form, is_featured: e.target.checked })} style={{ width: '16px', height: '16px', cursor: 'pointer' }} />
-              <label htmlFor="is_featured" style={{ fontSize: '13px', color: '#ccc', cursor: 'pointer' }}>Нүүр хуудасны гол мэдээ</label>
-            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+  <input type="checkbox" id="is_sub" checked={form.is_sub} onChange={e => setForm({ ...form, is_sub: e.target.checked })} style={{ width: '16px', height: '16px', cursor: 'pointer' }} />
+  <label htmlFor="is_sub" style={{ fontSize: '13px', color: '#ccc', cursor: 'pointer' }}>Нүүр хуудасны дэд мэдээ (2 жижиг карт)</label>
+</div>
 
             <button onClick={handleSave}
               style={{ background: '#C8202A', color: '#fff', border: 'none', borderRadius: '6px', padding: '12px 32px', cursor: 'pointer', fontWeight: '700', fontSize: '14px', fontFamily: 'inherit' }}>
