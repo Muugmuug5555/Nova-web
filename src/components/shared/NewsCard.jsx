@@ -45,9 +45,7 @@ export default function NewsCard({ article, variant = 'default', onClick }) {
               <span>{article.author}</span>
               <span>·</span>
               <span>{timeAgo(article.published_at)}</span>
-              <span>·</span>
-              <span>{article.views?.toLocaleString()} уншигч</span>
-            </div>
+              </div>
           </div>
         </div>
       </div>
