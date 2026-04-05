@@ -41,11 +41,11 @@ export default function NewsCard({ article, variant = 'default', onClick }) {
 >
   {article.title}
 </h2>
-            <div className={styles.heroMeta}>
-              <span>{article.author}</span>
-              <span>·</span>
-              <span>{timeAgo(article.published_at)}</span>
-              </div>
+           <div className={styles.heroMeta}>
+  <span>{article.author}</span>
+  <span>·</span>
+  <span>{timeAgo(article.published_at || article.created_at)}</span>
+</div>
           </div>
         </div>
       </div>
