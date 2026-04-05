@@ -216,11 +216,16 @@ is_sub: post.is_sub || false
             </select>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
-              <input type="checkbox" id="pinned" checked={form.pinned} onChange={e => setForm({ ...form, pinned: e.target.checked })} style={{ width: '16px', height: '16px', cursor: 'pointer' }} />
-              <label htmlFor="pinned" style={{ fontSize: '13px', color: '#ccc', cursor: 'pointer' }}>Яаралтай мэдээ (ticker-т харагдана)</label>
-            </div>
+  <input type="checkbox" id="pinned" checked={form.pinned} onChange={e => setForm({ ...form, pinned: e.target.checked })} style={{ width: '16px', height: '16px', cursor: 'pointer' }} />
+  <label htmlFor="pinned" style={{ fontSize: '13px', color: '#ccc', cursor: 'pointer' }}>Яаралтай мэдээ (ticker-т харагдана)</label>
+</div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+  <input type="checkbox" id="is_featured" checked={form.is_featured} onChange={e => setForm({ ...form, is_featured: e.target.checked })} style={{ width: '16px', height: '16px', cursor: 'pointer' }} />
+  <label htmlFor="is_featured" style={{ fontSize: '13px', color: '#ccc', cursor: 'pointer' }}>Нүүр хуудасны гол мэдээ</label>
+</div>
+
+<div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '24px' }}>
   <input type="checkbox" id="is_sub" checked={form.is_sub} onChange={e => setForm({ ...form, is_sub: e.target.checked })} style={{ width: '16px', height: '16px', cursor: 'pointer' }} />
   <label htmlFor="is_sub" style={{ fontSize: '13px', color: '#ccc', cursor: 'pointer' }}>Нүүр хуудасны дэд мэдээ (2 жижиг карт)</label>
 </div>
