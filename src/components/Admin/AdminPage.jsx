@@ -11,7 +11,7 @@ export default function AdminPage({ onLogout }) {
   const [form, setForm] = useState({
     title: '', summary: '', body: '',
     category: 'Улс төр', image_url: '',
-    status: 'published', pinned: false
+    status: 'published', pinned: false, is_featured: false
   })
 
   useEffect(() => { fetchPosts() }, [])
@@ -34,35 +34,38 @@ export default function AdminPage({ onLogout }) {
     }
     setView('list')
     setEditing(null)
-    setForm({ title: '', summary: '', body: '', category: 'Улс төр', image_url: '', status: 'published', pinned: false })
+    setForm({ title: '', summary: '', body: '', category: 'Улс төр', image_url: '', status: 'published', pinned: false, is_featured: false })
     fetchPosts()
   }
-async function handleImageUpload(e) {
-  const file = e.target.files[0]
-  if (!file) return
-  const ext = file.name.split('.').pop()
-  const fileName = `${Date.now()}.${ext}`
-  const { error } = await supabase.storage
-    .from('Nova-posts')
-    .upload(fileName, file, { upsert: true })
-  if (error) {
-    alert('Зураг upload хийхэд алдаа гарлаа')
-    return
+
+  async function handleImageUpload(e) {
+    const file = e.target.files[0]
+    if (!file) return
+    const ext = file.name.split('.').pop()
+    const fileName = `${Date.now()}.${ext}`
+    const { error } = await supabase.storage
+      .from('Nova-posts')
+      .upload(fileName, file, { upsert: true })
+    if (error) {
+      alert('Зураг upload хийхэд алдаа гарлаа')
+      return
+    }
+    const { data: urlData } = supabase.storage
+      .from('Nova-posts')
+      .getPublicUrl(fileName)
+    setForm(prev => ({ ...prev, image_url: urlData.publicUrl }))
   }
-  const { data: urlData } = supabase.storage
-    .from('Nova-posts')
-    .getPublicUrl(fileName)
-  setForm(prev => ({ ...prev, image_url: urlData.publicUrl }))
-}
-async function handleDelete(id) {
-  if (!window.confirm('Устгах уу?')) return
-  const { error } = await supabase.from('posts').delete().eq('id', id)
-  if (error) {
-    alert('Алдаа: ' + error.message)
-    return
+
+  async function handleDelete(id) {
+    if (!window.confirm('Устгах уу?')) return
+    const { error } = await supabase.from('posts').delete().eq('id', id)
+    if (error) {
+      alert('Алдаа: ' + error.message)
+      return
+    }
+    fetchPosts()
   }
-  fetchPosts()
-}
+
   function handleEdit(post) {
     setEditing(post.id)
     setForm({
@@ -72,7 +75,8 @@ async function handleDelete(id) {
       category: post.category || 'Улс төр',
       image_url: post.image_url || '',
       status: post.status || 'published',
-      pinned: post.pinned || false
+      pinned: post.pinned || false,
+      is_featured: post.is_featured || false
     })
     setView('form')
   }
@@ -104,7 +108,7 @@ async function handleDelete(id) {
         </div>
         <div style={{ display: 'flex', gap: '12px' }}>
           {view === 'list' ? (
-            <button onClick={() => { setEditing(null); setForm({ title: '', summary: '', body: '', category: 'Улс төр', image_url: '', status: 'published', pinned: false }); setView('form') }}
+            <button onClick={() => { setEditing(null); setForm({ title: '', summary: '', body: '', category: 'Улс төр', image_url: '', status: 'published', pinned: false, is_featured: false }); setView('form') }}
               style={{ background: '#C8202A', color: '#fff', border: 'none', borderRadius: '6px', padding: '8px 16px', cursor: 'pointer', fontWeight: '700', fontFamily: 'inherit' }}>
               + Мэдээ нэмэх
             </button>
@@ -120,7 +124,7 @@ async function handleDelete(id) {
           </button>
         </div>
       </div>
-<div style={{ padding: '24px', maxWidth: '1000px', margin: '0 auto' }}>
+      <div style={{ padding: '24px', maxWidth: '1000px', margin: '0 auto' }}>
         {view === 'list' ? (
           <div>
             <div style={{ marginBottom: '16px', fontSize: '13px', color: '#888' }}>
@@ -143,7 +147,11 @@ async function handleDelete(id) {
                   {posts.map(post => (
                     <tr key={post.id} style={{ borderBottom: '1px solid #1A1A1A' }}>
                       <td style={{ padding: '12px 10px', fontSize: '13px', maxWidth: '300px' }}>
-                        <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{post.title}</div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          {post.is_featured && <span style={{ fontSize: '10px', background: '#C8202A', color: '#fff', padding: '1px 6px', borderRadius: '3px' }}>ГОЛ</span>}
+                          {post.pinned && <span style={{ fontSize: '10px', background: '#333', color: '#FFD700', padding: '1px 6px', borderRadius: '3px' }}>ЯАРАЛТАЙ</span>}
+                          <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{post.title}</div>
+                        </div>
                       </td>
                       <td style={{ padding: '12px 10px', fontSize: '12px', color: '#888' }}>{post.category}</td>
                       <td style={{ padding: '12px 10px' }}>
@@ -187,22 +195,13 @@ async function handleDelete(id) {
             <textarea style={{ ...inp, height: '200px', resize: 'vertical' }} value={form.body} onChange={e => setForm({ ...form, body: e.target.value })} placeholder="Мэдээний бүтэн агуулга" />
 
             <label style={lbl}>ЗУРГИЙН ХОЛБООС</label>
-<input style={inp} value={form.image_url} onChange={e => setForm({ ...form, image_url: e.target.value })} placeholder="https://..." />
+            <input style={inp} value={form.image_url} onChange={e => setForm({ ...form, image_url: e.target.value })} placeholder="https://..." />
 
-<label style={lbl}>ЗУРАГ UPLOAD ХИЙХ</label>
-<input
-  type="file"
-  accept="image/*"
-  onChange={handleImageUpload}
-  style={{ ...inp, padding: '8px', cursor: 'pointer' }}
-/>
-{form.image_url && (
-  <img
-    src={form.image_url}
-    alt="preview"
-    style={{ width: '100%', borderRadius: '6px', marginBottom: '16px', objectFit: 'cover', maxHeight: '200px' }}
-  />
-)}
+            <label style={lbl}>ЗУРАГ UPLOAD ХИЙХ</label>
+            <input type="file" accept="image/*" onChange={handleImageUpload} style={{ ...inp, padding: '8px', cursor: 'pointer' }} />
+            {form.image_url && (
+              <img src={form.image_url} alt="preview" style={{ width: '100%', borderRadius: '6px', marginBottom: '16px', objectFit: 'cover', maxHeight: '200px' }} />
+            )}
 
             <label style={lbl}>АНГИЛАЛ</label>
             <select style={{ ...inp, cursor: 'pointer' }} value={form.category} onChange={e => setForm({ ...form, category: e.target.value })}>
@@ -215,9 +214,14 @@ async function handleDelete(id) {
               <option value="draft">Ноорог</option>
             </select>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '24px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
               <input type="checkbox" id="pinned" checked={form.pinned} onChange={e => setForm({ ...form, pinned: e.target.checked })} style={{ width: '16px', height: '16px', cursor: 'pointer' }} />
               <label htmlFor="pinned" style={{ fontSize: '13px', color: '#ccc', cursor: 'pointer' }}>Яаралтай мэдээ (ticker-т харагдана)</label>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '24px' }}>
+              <input type="checkbox" id="is_featured" checked={form.is_featured} onChange={e => setForm({ ...form, is_featured: e.target.checked })} style={{ width: '16px', height: '16px', cursor: 'pointer' }} />
+              <label htmlFor="is_featured" style={{ fontSize: '13px', color: '#ccc', cursor: 'pointer' }}>Нүүр хуудасны гол мэдээ</label>
             </div>
 
             <button onClick={handleSave}
