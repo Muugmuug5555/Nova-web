@@ -11,10 +11,11 @@ export default function Footer() {
 />
         <div className={styles.copy}>© {new Date().getFullYear()} ХААЛТГҮЙ ҮНЭН · Бүх эрх хуулиар хамгаалагдсан</div>
       </div>
-      <div className={styles.links}>
+      <<div className={styles.links}>
   <a href="https://www.facebook.com/NovaTseg" target="_blank" rel="noreferrer">Холбоо барих</a>
   <a href="/policy">Нийтлэлийн бодлого</a>
   <a href="/privacy">Нууцлал</a>
+  <span style={{ cursor: 'pointer', color: '#333' }} onClick={() => window.location.href = '/?admin=true'}>⚙</span>
 </div>
     </footer>
   )
