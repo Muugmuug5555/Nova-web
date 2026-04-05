@@ -26,7 +26,7 @@ function SidebarList({ articles, onArticleClick }) {
   return (
     <div className={styles.sidebarBlock}>
       <div className={styles.sbHead}>
-        <span className={styles.sbLabel}>СҮҮЛИЙН МЭДЭЭ</span>
+        <span className={styles.sbLabel}>СҮҮЛД НЭМЭГДСЭН</span>
         <span className={styles.sbMore}>Бүгд →</span>
       </div>
       <div className={styles.sbScroll}>
