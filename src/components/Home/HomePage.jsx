@@ -24,34 +24,25 @@ function timeAgo(dateStr) {
 
 function SidebarList({ articles, onArticleClick }) {
   return (
-  <div className={styles.page}>
-    {!activeCategory && (
-      <div className={styles.heroWrap}>
-        <div className={styles.heroMain}>
-          {hero && (
-            <NewsCard article={hero} variant="hero" onClick={onArticleClick} />
-          )}
-        </div>
-        <aside className={styles.sidebar}>
-          <SidebarList articles={sidebarArticles} onArticleClick={onArticleClick} />
-        </aside>
+    <div className={styles.sidebarBlock}>
+      <div className={styles.sbHead}>
+        <span className={styles.sbLabel}>СҮҮЛИЙН МЭДЭЭ</span>
+        <span className={styles.sbMore}>Бүгд →</span>
       </div>
-    )}
-
-    {(activeCategory
-      ? SECTIONS.filter(s => s.slug === activeCategory)
-      : SECTIONS
-    ).map(s => (
-      <CategorySection
-        key={s.slug}
-        slug={s.slug}
-        label={s.label}
-        onArticleClick={onArticleClick}
-        onCategoryClick={onCategoryChange}
-      />
-    ))}
-  </div>
-)
+      <div className={styles.sbScroll}>
+        {articles.map((a, i) => (
+          <div key={a.id} className={styles.sbItem} onClick={() => onArticleClick(a)}>
+            <span className={styles.sbNum}>0{i + 1}</span>
+            <div>
+              <div className={styles.sbCat}>{a.category}</div>
+              <div className={styles.sbTitle}>{a.title}</div>
+              <div className={styles.sbTime}>{timeAgo(a.created_at)}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
 }
 
 function CategorySection({ slug, label, onArticleClick, onCategoryClick }) {
@@ -79,11 +70,9 @@ function CategorySection({ slug, label, onArticleClick, onCategoryClick }) {
 export default function HomePage({ activeCategory, onArticleClick, onCategoryChange }) {
   const { articles: featured } = useArticles({ featured: true, limit: 1 })
   const { articles: recent } = useArticles({ limit: 8 })
-  const { articles: subArticles } = useArticles({ limit: 4 })
 
   const hero = featured[0] || recent[0]
   const sidebarArticles = recent.slice(0, 6)
-  const subCards = subArticles.slice(1, 3)
 
   return (
     <div className={styles.page}>
@@ -93,11 +82,6 @@ export default function HomePage({ activeCategory, onArticleClick, onCategoryCha
             {hero && (
               <NewsCard article={hero} variant="hero" onClick={onArticleClick} />
             )}
-            <div className={styles.subGrid}>
-              {subCards.map(a => (
-                <NewsCard key={a.id} article={a} variant="list" onClick={onArticleClick} />
-              ))}
-            </div>
           </div>
           <aside className={styles.sidebar}>
             <SidebarList articles={sidebarArticles} onArticleClick={onArticleClick} />
