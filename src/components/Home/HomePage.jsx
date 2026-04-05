@@ -79,9 +79,15 @@ export default function HomePage({ activeCategory, onArticleClick, onCategoryCha
       {!activeCategory && (
         <div className={styles.heroWrap}>
           <div className={styles.heroMain}>
-            {hero && (
-              <NewsCard article={hero} variant="hero" onClick={onArticleClick} />
-            )}
+  {hero && (
+    <NewsCard article={hero} variant="hero" onClick={onArticleClick} />
+  )}
+  <div className={styles.subGrid}>
+    {subCards.map(a => (
+      <NewsCard key={a.id} article={a} variant="list" onClick={onArticleClick} />
+    ))}
+  </div>
+</div>
           </div>
           <aside className={styles.sidebar}>
             <SidebarList articles={sidebarArticles} onArticleClick={onArticleClick} />
