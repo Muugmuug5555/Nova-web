@@ -42,9 +42,12 @@ export default function Header({ activeCategory, onCategoryChange, onSearch }) {
       {/* Logo + actions */}
       <div className={styles.main}>
         <a href="/" className={styles.logoWrap}>
-          <div className={styles.logoName}>НОВА.мн</div>
-          <div className={styles.logoSub}>хаалтгүй үнэн · digital freedom</div>
-        </a>
+  <img 
+    src="https://wblhguozbmfnrzoolids.supabase.co/storage/v1/object/public/nova%20logo/Nova%20(20).png" 
+    alt="НОВА.мн" 
+    className={styles.logoImg} 
+  />
+</a>
         <div className={styles.actions}>
           <a
             href="https://facebook.com"
