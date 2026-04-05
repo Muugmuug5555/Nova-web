@@ -38,22 +38,22 @@ export default function AdminPage({ onLogout }) {
     fetchPosts()
   }
 async function handleImageUpload(e) {
-    const file = e.target.files[0]
-    if (!file) return
-    const ext = file.name.split('.').pop()
-    const fileName = `${Date.now()}.${ext}`
-    const { error } = await supabase.storage
-  .from('Nova-posts')
-  .upload(fileName, file, { upsert: true })
-
-const { data: urlData } = supabase.storage
-  .from('Nova-posts')
-  .getPublicUrl(fileName)
-  async function handleDelete(id) {
-    if (!window.confirm('Устгах уу?')) return
-    await supabase.from('posts').delete().eq('id', id)
-    fetchPosts()
+  const file = e.target.files[0]
+  if (!file) return
+  const ext = file.name.split('.').pop()
+  const fileName = `${Date.now()}.${ext}`
+  const { error } = await supabase.storage
+    .from('Nova-posts')
+    .upload(fileName, file, { upsert: true })
+  if (error) {
+    alert('Зураг upload хийхэд алдаа гарлаа')
+    return
   }
+  const { data: urlData } = supabase.storage
+    .from('Nova-posts')
+    .getPublicUrl(fileName)
+  setForm(prev => ({ ...prev, image_url: urlData.publicUrl }))
+}
 
   function handleEdit(post) {
     setEditing(post.id)
