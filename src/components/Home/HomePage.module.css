@@ -25,7 +25,7 @@
   transition: background 0.3s, border-color 0.3s;
 }
 .sbScroll {
-  max-height: 320px;
+  max-height: 100%;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--b) transparent;
