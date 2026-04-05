@@ -6,11 +6,12 @@
 }
 
 .topbar {
-  background: var(--r);
+  background: #0A0A0A;
   padding: 5px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 .date {
