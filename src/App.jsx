@@ -18,17 +18,17 @@ export default function App() {
   const [checkingAuth, setCheckingAuth] = useState(true)
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setAdmin(!!data.session)
-      setCheckingAuth(false)
-    })
-    supabase.auth.onAuthStateChange((_e, session) => {
-      setAdmin(!!session)
-    })
-    if (window.location.pathname === '/admin') {
-      setPage('admin')
-    }
-  }, [])
+  supabase.auth.getSession().then(({ data }) => {
+    setAdmin(!!data.session)
+    setCheckingAuth(false)
+  })
+  supabase.auth.onAuthStateChange((_e, session) => {
+    setAdmin(!!session)
+  })
+  if (window.location.pathname === '/admin' || window.location.search.includes('admin=true')) {
+    setPage('admin')
+  }
+}, [])
 
   function openArticle(article) {
     setArticleId(article.id)
