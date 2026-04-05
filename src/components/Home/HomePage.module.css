@@ -24,6 +24,12 @@
   overflow: hidden;
   transition: background 0.3s, border-color 0.3s;
 }
+.sbScroll {
+  max-height: 320px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--b) transparent;
+}
 .sbHead {
   padding: 9px 14px;
   border-bottom: 1px solid var(--b);
