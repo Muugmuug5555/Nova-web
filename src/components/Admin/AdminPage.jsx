@@ -76,8 +76,8 @@ export default function AdminPage({ onLogout }) {
       image_url: post.image_url || '',
       status: post.status || 'published',
       pinned: post.pinned || false,
-      is_featured: post.is_featured || false
-      is_sub: post.is_sub || false
+      is_featured: post.is_featured || false,
+is_sub: post.is_sub || false
     })
     setView('form')
   }
