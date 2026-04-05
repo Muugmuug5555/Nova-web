@@ -1,7 +1,8 @@
 import { useArticles } from '../../hooks/useArticles'
 import NewsCard from '../shared/NewsCard'
 import styles from './HomePage.module.css'
-
+const { articles: subArticles } = useArticles({ limit: 4 })
+const subCards = subArticles.slice(1, 3)
 const SECTIONS = [
   { label: 'УЛСТӨР', slug: 'Улс төр' },
   { label: 'ЭДИЙН ЗАСАГ', slug: 'Эдийн засаг' },
