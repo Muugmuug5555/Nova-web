@@ -7,6 +7,8 @@
   grid-template-columns: 1fr 260px;
   gap: 20px;
   align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 heroMain {
   display: flex;
