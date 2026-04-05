@@ -32,7 +32,7 @@ heroMain {
   transition: background 0.3s, border-color 0.3s;
 }
 .sbScroll {
-  max-height: 460px;
+  max-height: 465px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--b) transparent;
