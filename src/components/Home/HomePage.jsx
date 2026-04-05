@@ -10,30 +10,6 @@ const SECTIONS = [
   { label: 'ТЕХНОЛОГИ', slug: 'Технологи' },
 ]
 
-function SidebarList({ articles, onArticleClick }) {
-  return (
-    <div className={styles.sidebarBlock}>
-      <div className={styles.sbHead}>
-        <span className={styles.sbLabel}>СҮҮЛИЙН МЭДЭЭ</span>
-        <span 
-  className={styles.sbMore}
-  onClick={() => onArticleClick && window.scrollTo(0,0)}
->Бүгд →</span>
-      </div>
-      {articles.map((a, i) => (
-        <div key={a.id} className={styles.sbItem} onClick={() => onArticleClick(a)}>
-          <span className={styles.sbNum}>0{i + 1}</span>
-          <div>
-            <div className={styles.sbCat}>{a.categories?.name?.toUpperCase()}</div>
-            <div className={styles.sbTitle}>{a.title}</div>
-            <div className={styles.sbTime}>{timeAgo(a.published_at)}</div>
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-}
-
 function timeAgo(dateStr) {
   if (!dateStr) return ''
   const date = new Date(dateStr)
@@ -46,6 +22,26 @@ function timeAgo(dateStr) {
   return `${Math.floor(hr / 24)} өдрийн өмнө`
 }
 
+function SidebarList({ articles, onArticleClick }) {
+  return (
+    <div className={styles.sidebarBlock}>
+      <div className={styles.sbHead}>
+        <span className={styles.sbLabel}>СҮҮЛИЙН МЭДЭЭ</span>
+      </div>
+      {articles.map((a, i) => (
+        <div key={a.id} className={styles.sbItem} onClick={() => onArticleClick(a)}>
+          <span className={styles.sbNum}>0{i + 1}</span>
+          <div>
+            <div className={styles.sbCat}>{a.category}</div>
+            <div className={styles.sbTitle}>{a.title}</div>
+            <div className={styles.sbTime}>{timeAgo(a.created_at)}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function CategorySection({ slug, label, onArticleClick, onCategoryClick }) {
   const { articles, loading } = useArticles({ category: slug, limit: 3 })
   if (loading || !articles.length) return null
@@ -54,7 +50,7 @@ function CategorySection({ slug, label, onArticleClick, onCategoryClick }) {
     <section className={styles.catSection}>
       <div className={styles.catHeader}>
         <span className={styles.catLabel}>{label}</span>
-        <span 
+        <span
           className={styles.catMore}
           onClick={() => onCategoryClick?.(slug)}
         >Бүгдийг үзэх →</span>
@@ -69,8 +65,8 @@ function CategorySection({ slug, label, onArticleClick, onCategoryClick }) {
 }
 
 export default function HomePage({ activeCategory, onArticleClick, onCategoryChange }) {
-  const { articles: featured, loading: featLoading } = useArticles({ featured: true, limit: 1 })
-  const { articles: recent, loading: recentLoading } = useArticles({ limit: 8 })
+  const { articles: featured } = useArticles({ featured: true, limit: 1 })
+  const { articles: recent } = useArticles({ limit: 8 })
   const { articles: subArticles } = useArticles({ limit: 4 })
 
   const hero = featured[0] || recent[0]
@@ -79,36 +75,36 @@ export default function HomePage({ activeCategory, onArticleClick, onCategoryCha
 
   return (
     <div className={styles.page}>
-      {/* Hero + sidebar */}
-      <div className={styles.heroWrap}>
-        <div className={styles.heroMain}>
-          {hero && (
-            <NewsCard article={hero} variant="hero" onClick={onArticleClick} />
-          )}
-          <div className={styles.subGrid}>
-            {subCards.map(a => (
-              <NewsCard key={a.id} article={a} variant="list" onClick={onArticleClick} />
-            ))}
+      {!activeCategory && (
+        <div className={styles.heroWrap}>
+          <div className={styles.heroMain}>
+            {hero && (
+              <NewsCard article={hero} variant="hero" onClick={onArticleClick} />
+            )}
+            <div className={styles.subGrid}>
+              {subCards.map(a => (
+                <NewsCard key={a.id} article={a} variant="list" onClick={onArticleClick} />
+              ))}
+            </div>
           </div>
+          <aside className={styles.sidebar}>
+            <SidebarList articles={sidebarArticles} onArticleClick={onArticleClick} />
+          </aside>
         </div>
-        <aside className={styles.sidebar}>
-          <SidebarList articles={sidebarArticles} onArticleClick={onArticleClick} />
-        </aside>
-      </div>
+      )}
 
-      {/* Category sections */}
       {(activeCategory
-  ? SECTIONS.filter(s => s.slug === activeCategory)
-  : SECTIONS
-).map(s => (
-  <CategorySection
-  key={s.slug}
-  slug={s.slug}
-  label={s.label}
-  onArticleClick={onArticleClick}
-  onCategoryClick={handleCategoryChange}
-/>
-))}
+        ? SECTIONS.filter(s => s.slug === activeCategory)
+        : SECTIONS
+      ).map(s => (
+        <CategorySection
+          key={s.slug}
+          slug={s.slug}
+          label={s.label}
+          onArticleClick={onArticleClick}
+          onCategoryClick={onCategoryChange}
+        />
+      ))}
     </div>
   )
 }
