@@ -41,9 +41,10 @@ export default function App() {
 
       {page === 'home' && (
         <HomePage
-          activeCategory={activeCategory}
-          onArticleClick={openArticle}
-        />
+  activeCategory={activeCategory}
+  onArticleClick={openArticle}
+  onCategoryChange={handleCategoryChange}
+/>
       )}
 
       {page === 'article' && (
