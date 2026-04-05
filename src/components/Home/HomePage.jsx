@@ -68,12 +68,12 @@ function CategorySection({ slug, label, onArticleClick, onCategoryClick }) {
 
 export default function HomePage({ activeCategory, onArticleClick, onCategoryChange }) {
   const { articles: featured } = useArticles({ featured: true, limit: 1 })
-  const { articles: recent } = useArticles({ limit: 8 })
+  const { articles: recent } = useArticles({ limit: 20 })
   const { articles: subArticles } = useArticles({ limit: 4 })
 
   const hero = featured[0] || recent[0]
-  const sidebarArticles = recent.slice(0, 6)
-  const subCards = subArticles.slice(1, 3)
+  const sidebarArticles = recent.slice(0, 20)
+  const subCards = subArticles.slice(0, 20)
 
   return (
     <div className={styles.page}>
