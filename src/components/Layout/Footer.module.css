@@ -8,12 +8,9 @@
 }
 
 .logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  font-weight: 900;
-  color: var(--r);
+  height: 36px;
+  width: auto;
 }
-
 .copy {
   font-size: 10px;
   color: #555;
