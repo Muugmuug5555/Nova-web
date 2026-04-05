@@ -4,7 +4,11 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div>
-        <div className={styles.logo}>НОВА.мн</div>
+        <img 
+  src="https://wblhguozbmfnrzoolids.supabase.co/storage/v1/object/public/nova%20logo/Nova%20(20).png" 
+  alt="НОВА.мн" 
+  className={styles.logo}
+/>
         <div className={styles.copy}>© {new Date().getFullYear()} ХААЛТГҮЙ ҮНЭН · Бүх эрх хуулиар хамгаалагдсан</div>
       </div>
       <div className={styles.links}>
