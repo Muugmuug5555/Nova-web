@@ -24,25 +24,34 @@ function timeAgo(dateStr) {
 
 function SidebarList({ articles, onArticleClick }) {
   return (
-    <div className={styles.sidebarBlock}>
-      <div className={styles.sbHead}>
-        <span className={styles.sbLabel}>СҮҮЛИЙН МЭДЭЭ</span>
-        <span className={styles.sbMore}>Бүгд →</span>
+  <div className={styles.page}>
+    {!activeCategory && (
+      <div className={styles.heroWrap}>
+        <div className={styles.heroMain}>
+          {hero && (
+            <NewsCard article={hero} variant="hero" onClick={onArticleClick} />
+          )}
+        </div>
+        <aside className={styles.sidebar}>
+          <SidebarList articles={sidebarArticles} onArticleClick={onArticleClick} />
+        </aside>
       </div>
-      <div className={styles.sbScroll}>
-        {articles.map((a, i) => (
-          <div key={a.id} className={styles.sbItem} onClick={() => onArticleClick(a)}>
-            <span className={styles.sbNum}>0{i + 1}</span>
-            <div>
-              <div className={styles.sbCat}>{a.category}</div>
-              <div className={styles.sbTitle}>{a.title}</div>
-              <div className={styles.sbTime}>{timeAgo(a.created_at)}</div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
+    )}
+
+    {(activeCategory
+      ? SECTIONS.filter(s => s.slug === activeCategory)
+      : SECTIONS
+    ).map(s => (
+      <CategorySection
+        key={s.slug}
+        slug={s.slug}
+        label={s.label}
+        onArticleClick={onArticleClick}
+        onCategoryClick={onCategoryChange}
+      />
+    ))}
+  </div>
+)
 }
 
 function CategorySection({ slug, label, onArticleClick, onCategoryClick }) {
