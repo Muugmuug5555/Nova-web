@@ -110,10 +110,11 @@ export default function ArticlePage({ articleId, onBack, onArticleClick }) {
           </p>
 
           {/* Body */}
-          <div
-            className={styles.body}
-            dangerouslySetInnerHTML={{ __html: article.body || '<p>Мэдээний агуулга байхгүй байна.</p>' }}
-          />
+          <div className={styles.body}>
+  {(article.body || '').split('\n\n').map((para, i) => (
+    <p key={i}>{para}</p>
+  ))}
+</div>
 
           {/* Share */}
           <div className={styles.shareRow}>
