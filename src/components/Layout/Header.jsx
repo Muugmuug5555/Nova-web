@@ -23,9 +23,7 @@ return(
 <div className={styles.topbar}>
 <span className={styles.date}>{new Date().toLocaleDateString('mn-MN',{year:'numeric',month:'long',day:'numeric',weekday:'long'})}</span>
 <div className={styles.topLinks}>
-<a href="/about">Бидний тухай</a>
-<a href="/contact">Холбоо барих</a>
-<a href="/rss">RSS</a>
+  <a href="https://www.facebook.com/NovaTseg" target="_blank" rel="noreferrer">Холбоо барих</a>
 </div>
 </div>
 <div className={styles.hdrInner}>
