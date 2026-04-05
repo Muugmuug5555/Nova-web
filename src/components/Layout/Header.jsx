@@ -79,7 +79,10 @@ export default function Header({ activeCategory, onCategoryChange }) {
               />
             </form>
           ) : (
-            <button className={styles.searchBtn} onClick={() => setSearchOpen(true)}>
+            <button
+              className={styles.searchBtn}
+              onClick={() => setSearchOpen(true)}
+            >
               Хайх
             </button>
           )}
