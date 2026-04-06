@@ -111,3 +111,32 @@
   box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 .toggleOn .toggleKnob { transform: translateX(20px); }
+@media (max-width: 768px) {
+  .topbar { display: none; }
+  
+  .hdrInner {
+    padding: 8px 16px;
+    gap: 8px;
+  }
+  
+  .logoImg { height: 36px; }
+  
+  .nav {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 16px;
+  }
+  
+  .nav::-webkit-scrollbar { display: none; }
+  
+  .navItem {
+    padding: 8px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  
+  .fbBtn { display: none; }
+  
+  .searchBtn { display: none; }
+}
