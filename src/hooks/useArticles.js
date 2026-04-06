@@ -16,7 +16,7 @@ export function useArticles({ category, limit = 12, featured = false } = {}) {
         .limit(limit)
 
       if (category) query = query.eq('category', category)
-      if (featured) query = query.eq('pinned', true)
+      if (featured) query = query.eq('is_featured', true)
 
       const { data } = await query
       setArticles(data || [])
