@@ -62,7 +62,7 @@ export default function NewsCard({ article, variant = 'default', onClick }) {
         <div className={styles.listBody}>
           <div className={styles.listCat}>{catName.toUpperCase()}</div>
           <div className={styles.listTitle}>{article.title}</div>
-          <div className={styles.listTime}>{timeAgo(article.published_at)}</div>
+          <div className={styles.listTime}>{timeAgo(a.created_at)}</div>
         </div>
       </div>
     )
