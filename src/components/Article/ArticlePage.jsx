@@ -120,7 +120,7 @@ export default function ArticlePage({ articleId, onBack, onArticleClick }) {
           <div className={styles.shareRow}>
             <span className={styles.shareLabel}>ХУВААЛЦАХ</span>
             <a
-              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}
+              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://nova.mn/api/og?id=${article.id}`)}`}
               target="_blank" rel="noreferrer"
               className={`${styles.shareBtn} ${styles.fbShare}`}
             >Facebook</a>
